@@ -1,0 +1,264 @@
+fatal error: concurrent map read and map write
+
+goroutine 115644 gp=0x400d9a61c0 m=8 mp=0x4000db2008 [running]:
+runtime.fatal({0x360587e?, 0x29d9c94?})
+	golang/go/src/runtime/panic.go:1042 +0x40 fp=0x4010b86b10 sp=0x4010b86ae0 pc=0x4e590
+runtime.mapaccess2_faststr(0x2e56280, 0x400416d140, {0x40072b3f00, 0x3d})
+	golang/go/src/runtime/map_faststr.go:117 +0x4c fp=0x4010b86b80 sp=0x4010b86b10 pc=0x276dc
+gitlab.myteksi.net/gophers/go/delv/delv-config/common/circuitbreaker.GetMYSQLCB(...)
+	/go/src/gitlab.myteksi.net/gophers/go/delv/delv-config/common/circuitbreaker/circuit_breakers.go:106
+gitlab.myteksi.net/gophers/go/delv/delv-config/common/storage.(*mySQLHystrixStrategy).getCircuitName(0x40022e4438?, {0x35c0115, 0xd})
+	/go/src/gitlab.myteksi.net/gophers/go/delv/delv-config/common/storage/strategy_mysql_hystrix.go:652 +0xb0 fp=0x4010b86bf0 sp=0x4010b86b80 pc=0x29d9cc0
+gitlab.myteksi.net/gophers/go/delv/delv-config/common/storage.(*mySQLHystrixStrategy).DeleteContext.func1()
+	/go/src/gitlab.myteksi.net/gophers/go/delv/delv-config/common/storage/strategy_mysql_hystrix.go:445 +0x64 fp=0x4010b86c90 sp=0x4010b86bf0 pc=0x29d7104
+gitlab.myteksi.net/gophers/go/commons/util/resilience/retry.startOperation({0x3ce5520, 0x400a8f5e60}, 0x400bb8dd40, 0x4007f14cf0)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/resilience/retry/retry.go:99 +0x130 fp=0x4010b86d70 sp=0x4010b86c90 pc=0x9f36c0
+gitlab.myteksi.net/gophers/go/commons/util/resilience/retry.Prepare.func1({0x3ce5520?, 0x400a8f5e60?}, 0x0?)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/resilience/retry/retry.go:71 +0x28 fp=0x4010b86da0 sp=0x4010b86d70 pc=0x9f3468
+gitlab.myteksi.net/gophers/go/delv/delv-config/common/storage.(*mySQLHystrixStrategy).DeleteContext(0x4002e75ef0, {0x3ce5520, 0x400a8f5e60}, {0x3cca350, 0x4006d305b0}, {0x40034a1360, 0x1a})
+	/go/src/gitlab.myteksi.net/gophers/go/delv/delv-config/common/storage/strategy_mysql_hystrix.go:444 +0xcc fp=0x4010b86dd0 sp=0x4010b86da0 pc=0x29d704c
+gitlab.myteksi.net/gophers/go/delv/delv-config/common/storage.(*mySQLRedisStrategy).DeleteContext.func1({0x3ce5520?, 0x400a8f5e60?})
+	/go/src/gitlab.myteksi.net/gophers/go/delv/delv-config/common/storage/strategy_mysql_redis.go:378 +0x50 fp=0x4010b86e20 sp=0x4010b86dd0 pc=0x29df820
+gitlab.myteksi.net/gophers/go/delv/delv-config/common/goroutine/multiple.(*executorControllerImpl).runExecutors.func1.1({0x4011c7cea0?, 0x400a8f5b60?}, 0x4010af5da0, {0x3ce5520?, 0x400a8f5e60?}, 0x400a8f5b30)
+	/go/src/gitlab.myteksi.net/gophers/go/delv/delv-config/common/goroutine/multiple/exe_controller.go:377 +0x80 fp=0x4010b86ea0 sp=0x4010b86e20 pc=0x29c9460
+gitlab.myteksi.net/gophers/go/delv/delv-config/common/goroutine/multiple.(*executorControllerImpl).runExecutors.func1({0x3ce5520?, 0x400a8f5e60?})
+	/go/src/gitlab.myteksi.net/gophers/go/delv/delv-config/common/goroutine/multiple/exe_controller.go:380 +0x44 fp=0x4010b86ee0 sp=0x4010b86ea0 pc=0x29c93a4
+gitlab.myteksi.net/gophers/go/food/common/concurrencyutils.defaultGo.func1({0x3ce5520?, 0x400a8f5e60?})
+	/go/src/gitlab.myteksi.net/gophers/go/food/common/concurrencyutils/concurrencyutils.go:105 +0xa0 fp=0x4010b86f60 sp=0x4010b86ee0 pc=0x1fdce50
+gitlab.myteksi.net/gophers/go/commons/util/parallel/gconcurrent.Go.func1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/parallel/gconcurrent/goroutine.go:62 +0x78 fp=0x4010b86fd0 sp=0x4010b86f60 pc=0x1017208
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4010b86fd0 sp=0x4010b86fd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/parallel/gconcurrent.Go in goroutine 115650
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/parallel/gconcurrent/goroutine.go:48 +0xc0
+
+goroutine 1 gp=0x40000021c0 m=nil [select, 55 minutes]:
+runtime.gopark(0x4008b5dcb8?, 0x2?, 0x78?, 0xdb?, 0x4008b5dc8c?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x400b7fbb30 sp=0x400b7fbb10 pc=0x513a8
+runtime.selectgo(0x400b7fbcb8, 0x4008b5dc88, 0x2?, 0x0, 0x1?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x400b7fbc40 sp=0x400b7fbb30 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/grab-kit.(*service).Run(0x400764a480, {0x3ce54e8?, 0x62f2cc0?})
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/grab-kit/service.go:276 +0x1d4 fp=0x400b7fbd30 sp=0x400b7fbc40 pc=0x1129874
+gitlab.myteksi.net/gophers/go/delv/delv-config/server.serve({0x400d0e1ec0, 0x9, 0x9})
+	/go/src/gitlab.myteksi.net/gophers/go/delv/delv-config/server/serve.go:105 +0x1b4 fp=0x400b7fbe00 sp=0x400b7fbd30 pc=0x2af5904
+gitlab.myteksi.net/gophers/go/delv/delv-config/server.Serve()
+	/go/src/gitlab.myteksi.net/gophers/go/delv/delv-config/server/serve.go:71 +0x288 fp=0x400b7fbf30 sp=0x400b7fbe00 pc=0x2af4af8
+main.main()
+	src/gitlab.myteksi.net/gophers/go/delv/delv-config/cmd/server/main.go:32 +0x1c fp=0x400b7fbf40 sp=0x400b7fbf30 pc=0x2b076ac
+runtime.main()
+	golang/go/src/runtime/proc.go:271 +0x28c fp=0x400b7fbfd0 sp=0x400b7fbf40 pc=0x50f4c
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x400b7fbfd0 sp=0x400b7fbfd0 pc=0x8b364
+
+goroutine 2 gp=0x4000002c40 m=nil [force gc (idle), 3 minutes]:
+runtime.gopark(0x31be632b31a?, 0x0?, 0x0?, 0x0?, 0x0?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4000096f90 sp=0x4000096f70 pc=0x513a8
+runtime.goparkunlock(...)
+	golang/go/src/runtime/proc.go:408
+runtime.forcegchelper()
+	golang/go/src/runtime/proc.go:326 +0xb8 fp=0x4000096fd0 sp=0x4000096f90 pc=0x51208
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4000096fd0 sp=0x4000096fd0 pc=0x8b364
+created by runtime.init.6 in goroutine 1
+	golang/go/src/runtime/proc.go:314 +0x24
+
+goroutine 3 gp=0x4000003180 m=nil [GC sweep wait]:
+runtime.gopark(0x1?, 0x0?, 0x0?, 0x0?, 0x0?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4000097760 sp=0x4000097740 pc=0x513a8
+runtime.goparkunlock(...)
+	golang/go/src/runtime/proc.go:408
+runtime.bgsweep(0x40000c0000)
+	golang/go/src/runtime/mgcsweep.go:318 +0x108 fp=0x40000977b0 sp=0x4000097760 pc=0x3ad58
+runtime.gcenable.gowrap1()
+	golang/go/src/runtime/mgc.go:203 +0x28 fp=0x40000977d0 sp=0x40000977b0 pc=0x2ef08
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x40000977d0 sp=0x40000977d0 pc=0x8b364
+created by runtime.gcenable in goroutine 1
+	golang/go/src/runtime/mgc.go:203 +0x6c
+
+goroutine 4 gp=0x4000003340 m=nil [GC scavenge wait]:
+runtime.gopark(0x1152e8?, 0xf17dc?, 0x0?, 0x0?, 0x0?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4000097f60 sp=0x4000097f40 pc=0x513a8
+runtime.goparkunlock(...)
+	golang/go/src/runtime/proc.go:408
+runtime.(*scavengerState).park(0x6282b20)
+	golang/go/src/runtime/mgcscavenge.go:425 +0x5c fp=0x4000097f90 sp=0x4000097f60 pc=0x386ec
+runtime.bgscavenge(0x40000c0000)
+	golang/go/src/runtime/mgcscavenge.go:658 +0xac fp=0x4000097fb0 sp=0x4000097f90 pc=0x38c9c
+runtime.gcenable.gowrap2()
+	golang/go/src/runtime/mgc.go:204 +0x28 fp=0x4000097fd0 sp=0x4000097fb0 pc=0x2eea8
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4000097fd0 sp=0x4000097fd0 pc=0x8b364
+created by runtime.gcenable in goroutine 1
+	golang/go/src/runtime/mgc.go:204 +0xac
+
+goroutine 5 gp=0x4000003c00 m=nil [finalizer wait]:
+runtime.gopark(0x0?, 0x400c5bb770?, 0x0?, 0xe0?, 0x1000000010?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x400bf9ed80 sp=0x400bf9ed60 pc=0x513a8
+runtime.runfinq()
+	golang/go/src/runtime/mfinal.go:194 +0x108 fp=0x400bf9efd0 sp=0x400bf9ed80 pc=0x2dfd8
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x400bf9efd0 sp=0x400bf9efd0 pc=0x8b364
+created by runtime.createfing in goroutine 1
+	golang/go/src/runtime/mfinal.go:164 +0x80
+
+goroutine 6 gp=0x400047e700 m=nil [GC worker (idle)]:
+runtime.gopark(0x31bea2683ff?, 0x3?, 0xc5?, 0x75?, 0x0?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4000098730 sp=0x4000098710 pc=0x513a8
+runtime.gcBgMarkWorker()
+	golang/go/src/runtime/mgc.go:1310 +0xd8 fp=0x40000987d0 sp=0x4000098730 pc=0x31008
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x40000987d0 sp=0x40000987d0 pc=0x8b364
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	golang/go/src/runtime/mgc.go:1234 +0x28
+
+goroutine 7 gp=0x400047e8c0 m=nil [GC worker (idle)]:
+runtime.gopark(0x31bea2661dd?, 0x3?, 0x60?, 0x6d?, 0x0?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4000098f30 sp=0x4000098f10 pc=0x513a8
+runtime.gcBgMarkWorker()
+	golang/go/src/runtime/mgc.go:1310 +0xd8 fp=0x4000098fd0 sp=0x4000098f30 pc=0x31008
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4000098fd0 sp=0x4000098fd0 pc=0x8b364
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+	golang/go/src/runtime/mgc.go:1234 +0x28
+
+goroutine 8 gp=0x4000acd500 m=nil [select]:
+runtime.gopark(0x4000093770?, 0x2?, 0x9?, 0x3?, 0x4000093764?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4000093610 sp=0x40000935f0 pc=0x513a8
+runtime.selectgo(0x4000093770, 0x4000093760, 0x0?, 0x0, 0x0?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x4000093720 sp=0x4000093610 pc=0x64944
+github.com/golang/glog.(*fileSink).flushDaemon(0x62826d8)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/github.com/golang/glog/glog_file.go:351 +0xa8 fp=0x40000937b0 sp=0x4000093720 pc=0x1cad588
+github.com/golang/glog.init.1.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/github.com/golang/glog/glog_file.go:166 +0x28 fp=0x40000937d0 sp=0x40000937b0 pc=0x1cac708
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x40000937d0 sp=0x40000937d0 pc=0x8b364
+created by github.com/golang/glog.init.1 in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/github.com/golang/glog/glog_file.go:166 +0x140
+
+goroutine 9 gp=0x4000acdc00 m=nil [select]:
+runtime.gopark(0x4004a56f58?, 0x3?, 0xd0?, 0x82?, 0x4004a56f52?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4004a56e00 sp=0x4004a56de0 pc=0x513a8
+runtime.selectgo(0x4004a56f58, 0x4004a56f4c, 0x4002c882d0?, 0x0, 0x400c3ebc80?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x4004a56f10 sp=0x4004a56e00 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x4000bafb00)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:98 +0x128 fp=0x4004a56fb0 sp=0x4004a56f10 pc=0x3fdb48
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x28 fp=0x4004a56fd0 sp=0x4004a56fb0 pc=0x3fe518
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4004a56fd0 sp=0x4004a56fd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x3c
+
+goroutine 10 gp=0x4000acddc0 m=nil [select]:
+runtime.gopark(0x4004a5af58?, 0x3?, 0xe0?, 0x30?, 0x4004a5af52?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4004a5ae00 sp=0x4004a5ade0 pc=0x513a8
+runtime.selectgo(0x4004a5af58, 0x4004a5af4c, 0x40070f30e0?, 0x0, 0x4007bb3e90?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x4004a5af10 sp=0x4004a5ae00 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x4000bafb80)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:98 +0x128 fp=0x4004a5afb0 sp=0x4004a5af10 pc=0x3fdb48
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x28 fp=0x4004a5afd0 sp=0x4004a5afb0 pc=0x3fe518
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4004a5afd0 sp=0x4004a5afd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x3c
+
+goroutine 11 gp=0x4000978a80 m=nil [select]:
+runtime.gopark(0x4004a57f58?, 0x3?, 0x10?, 0x9d?, 0x4004a57f52?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4004a57e00 sp=0x4004a57de0 pc=0x513a8
+runtime.selectgo(0x4004a57f58, 0x4004a57f4c, 0x4002c89d10?, 0x0, 0x4007b45e60?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x4004a57f10 sp=0x4004a57e00 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x4000bafc00)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:98 +0x128 fp=0x4004a57fb0 sp=0x4004a57f10 pc=0x3fdb48
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x28 fp=0x4004a57fd0 sp=0x4004a57fb0 pc=0x3fe518
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4004a57fd0 sp=0x4004a57fd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x3c
+
+goroutine 12 gp=0x4000978e00 m=nil [select]:
+runtime.gopark(0x4008f82f58?, 0x3?, 0x90?, 0x66?, 0x4008f82f52?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4008f82e00 sp=0x4008f82de0 pc=0x513a8
+runtime.selectgo(0x4008f82f58, 0x4008f82f4c, 0x400a7d6690?, 0x0, 0x4007bc1ec0?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x4008f82f10 sp=0x4008f82e00 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x4000bafc80)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:98 +0x128 fp=0x4008f82fb0 sp=0x4008f82f10 pc=0x3fdb48
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x28 fp=0x4008f82fd0 sp=0x4008f82fb0 pc=0x3fe518
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4008f82fd0 sp=0x4008f82fd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x3c
+
+goroutine 13 gp=0x4000c1c000 m=nil [select]:
+runtime.gopark(0x4007135f58?, 0x3?, 0xf0?, 0x9e?, 0x4007135f52?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4007135e00 sp=0x4007135de0 pc=0x513a8
+runtime.selectgo(0x4007135f58, 0x4007135f4c, 0x4002c89ef0?, 0x0, 0x4007bd2c00?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x4007135f10 sp=0x4007135e00 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x4000bafd00)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:98 +0x128 fp=0x4007135fb0 sp=0x4007135f10 pc=0x3fdb48
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x28 fp=0x4007135fd0 sp=0x4007135fb0 pc=0x3fe518
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4007135fd0 sp=0x4007135fd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x3c
+
+goroutine 14 gp=0x4000c1c1c0 m=nil [select]:
+runtime.gopark(0x400712ff58?, 0x3?, 0xf0?, 0x60?, 0x400712ff52?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x400712fe00 sp=0x400712fde0 pc=0x513a8
+runtime.selectgo(0x400712ff58, 0x400712ff4c, 0x400a7d60f0?, 0x0, 0x4007bd3200?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x400712ff10 sp=0x400712fe00 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x4000bafd80)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:98 +0x128 fp=0x400712ffb0 sp=0x400712ff10 pc=0x3fdb48
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x28 fp=0x400712ffd0 sp=0x400712ffb0 pc=0x3fe518
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x400712ffd0 sp=0x400712ffd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x3c
+
+goroutine 15 gp=0x4000c1c380 m=nil [select]:
+runtime.gopark(0x400a8b3f58?, 0x3?, 0xc0?, 0x63?, 0x400a8b3f52?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x400a8b3e00 sp=0x400a8b3de0 pc=0x513a8
+runtime.selectgo(0x400a8b3f58, 0x400a8b3f4c, 0x400a7d63c0?, 0x0, 0x4007bc1800?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x400a8b3f10 sp=0x400a8b3e00 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x4000bafe00)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:98 +0x128 fp=0x400a8b3fb0 sp=0x400a8b3f10 pc=0x3fdb48
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x28 fp=0x400a8b3fd0 sp=0x400a8b3fb0 pc=0x3fe518
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x400a8b3fd0 sp=0x400a8b3fd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x3c
+
+goroutine 16 gp=0x4000c1c540 m=nil [select]:
+runtime.gopark(0x4007130f58?, 0x3?, 0x80?, 0x36?, 0x4007130f52?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x4007130e00 sp=0x4007130de0 pc=0x513a8
+runtime.selectgo(0x4007130f58, 0x4007130f4c, 0x40070f3680?, 0x0, 0x4007b89080?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x4007130f10 sp=0x4007130e00 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x4000bafe80)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:98 +0x128 fp=0x4007130fb0 sp=0x4007130f10 pc=0x3fdb48
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x28 fp=0x4007130fd0 sp=0x4007130fb0 pc=0x3fe518
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x4007130fd0 sp=0x4007130fd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x3c
+
+goroutine 18 gp=0x4000c1c700 m=nil [select]:
+runtime.gopark(0x400a8b4f58?, 0x3?, 0x80?, 0x67?, 0x400a8b4f52?)
+	golang/go/src/runtime/proc.go:402 +0xc8 fp=0x400a8b4e00 sp=0x400a8b4de0 pc=0x513a8
+runtime.selectgo(0x400a8b4f58, 0x400a8b4f4c, 0x400a7d6780?, 0x0, 0x4007c78300?, 0x1)
+	golang/go/src/runtime/select.go:327 +0x614 fp=0x400a8b4f10 sp=0x400a8b4e00 pc=0x64944
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x4000baff00)
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:98 +0x128 fp=0x400a8b4fb0 sp=0x400a8b4f10 pc=0x3fdb48
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.gowrap1()
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x28 fp=0x400a8b4fd0 sp=0x400a8b4fb0 pc=0x3fe518
+runtime.goexit({})
+	golang/go/src/runtime/asm_arm64.s:1222 +0x4 fp=0x400a8b4fd0 sp=0x400a8b4fd0 pc=0x8b364
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start in goroutine 1
+	/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog/async_buffer.go:225 +0x3c
+

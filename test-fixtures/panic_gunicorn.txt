@@ -1,0 +1,233 @@
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x58 pc=0x3a57d8]
+
+goroutine 1 [running]:
+panic({0x1d14820, 0x38f4490})
+	/usr/local/go/src/runtime/panic.go:987 +0x3ac fp=0x40035b5c10 sp=0x40035b5b50 pc=0x4542c
+runtime.panicmem()
+	/usr/local/go/src/runtime/panic.go:260 +0x48 fp=0x40035b5c30 sp=0x40035b5c10 pc=0x43b38
+runtime.sigpanic()
+	/usr/local/go/src/runtime/signal_unix.go:837 +0x214 fp=0x40035b5c70 sp=0x40035b5c30 pc=0x5c914
+gitlab.myteksi.net/gophers/go/commons/util/grab-kit/structuredlogging.NewStructuredLogger(0x1b46340?)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/grab-kit@v1.1.52/structuredlogging/config.go:55 +0x18 fp=0x40035b5ce0 sp=0x40035b5c80 pc=0x3a57d8
+gitlab.myteksi.net/gandalf/services/gungnir/server.Serve()
+	/builds/gandalf/services/gungnir/server/serve.go:45 +0x50 fp=0x40035b5f60 sp=0x40035b5ce0 pc=0x1a447c0
+main.main()
+	/builds/gandalf/services/gungnir/server/cmd/server/main.go:32 +0x1c fp=0x40035b5f70 sp=0x40035b5f60 pc=0x1a45c5c
+runtime.main()
+	/usr/local/go/src/runtime/proc.go:250 +0x200 fp=0x40035b5fd0 sp=0x40035b5f70 pc=0x47e00
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x40035b5fd0 sp=0x40035b5fd0 pc=0x7a304
+
+goroutine 2 [force gc (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000084fa0 sp=0x4000084f80 pc=0x48210
+runtime.goparkunlock(...)
+	/usr/local/go/src/runtime/proc.go:387
+runtime.forcegchelper()
+	/usr/local/go/src/runtime/proc.go:305 +0xb0 fp=0x4000084fd0 sp=0x4000084fa0 pc=0x48060
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x4000084fd0 sp=0x4000084fd0 pc=0x7a304
+created by runtime.init.6
+	/usr/local/go/src/runtime/proc.go:293 +0x24
+
+goroutine 3 [GC sweep wait]:
+runtime.gopark(0x1?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000085760 sp=0x4000085740 pc=0x48210
+runtime.goparkunlock(...)
+	/usr/local/go/src/runtime/proc.go:387
+runtime.bgsweep(0x0?)
+	/usr/local/go/src/runtime/mgcsweep.go:319 +0x100 fp=0x40000857b0 sp=0x4000085760 pc=0x32ff0
+runtime.gcenable.func1()
+	/usr/local/go/src/runtime/mgc.go:178 +0x28 fp=0x40000857d0 sp=0x40000857b0 pc=0x28048
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x40000857d0 sp=0x40000857d0 pc=0x7a304
+created by runtime.gcenable
+	/usr/local/go/src/runtime/mgc.go:178 +0x6c
+
+goroutine 4 [GC scavenge wait]:
+runtime.gopark(0x40000560e0?, 0x24d13d8?, 0x0?, 0x0?, 0x0?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000085f50 sp=0x4000085f30 pc=0x48210
+runtime.goparkunlock(...)
+	/usr/local/go/src/runtime/proc.go:387
+runtime.(*scavengerState).park(0x3928820)
+	/usr/local/go/src/runtime/mgcscavenge.go:400 +0x5c fp=0x4000085f80 sp=0x4000085f50 pc=0x30f1c
+runtime.bgscavenge(0x0?)
+	/usr/local/go/src/runtime/mgcscavenge.go:633 +0xa8 fp=0x4000085fb0 sp=0x4000085f80 pc=0x314b8
+runtime.gcenable.func2()
+	/usr/local/go/src/runtime/mgc.go:179 +0x28 fp=0x4000085fd0 sp=0x4000085fb0 pc=0x27fe8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x4000085fd0 sp=0x4000085fd0 pc=0x7a304
+created by runtime.gcenable
+	/usr/local/go/src/runtime/mgc.go:179 +0xac
+
+goroutine 5 [finalizer wait]:
+runtime.gopark(0x0?, 0x21eabc0?, 0x60?, 0x2?, 0x2000000020?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000084580 sp=0x4000084560 pc=0x48210
+runtime.runfinq()
+	/usr/local/go/src/runtime/mfinal.go:193 +0x100 fp=0x40000847d0 sp=0x4000084580 pc=0x27110
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x40000847d0 sp=0x40000847d0 pc=0x7a304
+created by runtime.createfing
+	/usr/local/go/src/runtime/mfinal.go:163 +0x80
+
+goroutine 6 [select]:
+runtime.gopark(0x4000086778?, 0x3?, 0x0?, 0x0?, 0x4000086752?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000284e00 sp=0x4000284de0 pc=0x48210
+runtime.selectgo(0x4000284f78, 0x400008674c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x4000284f10 sp=0x4000284e00 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef100)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x4000284fb0 sp=0x4000284f10 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x4000284fd0 sp=0x4000284fb0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x4000284fd0 sp=0x4000284fd0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 7 [select]:
+runtime.gopark(0x4000086f78?, 0x3?, 0x0?, 0x0?, 0x4000086f52?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x40000ace00 sp=0x40000acde0 pc=0x48210
+runtime.selectgo(0x40000acf78, 0x4000086f4c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x40000acf10 sp=0x40000ace00 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef180)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x40000acfb0 sp=0x40000acf10 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x40000acfd0 sp=0x40000acfb0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x40000acfd0 sp=0x40000acfd0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 8 [select]:
+runtime.gopark(0x4000087778?, 0x3?, 0x0?, 0x0?, 0x4000087752?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000318e00 sp=0x4000318de0 pc=0x48210
+runtime.selectgo(0x4000318f78, 0x400008774c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x4000318f10 sp=0x4000318e00 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef200)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x4000318fb0 sp=0x4000318f10 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x4000318fd0 sp=0x4000318fb0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x4000318fd0 sp=0x4000318fd0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 9 [select]:
+runtime.gopark(0x4000087f78?, 0x3?, 0x0?, 0x0?, 0x4000087f52?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000087e00 sp=0x4000087de0 pc=0x48210
+runtime.selectgo(0x4000087f78, 0x4000087f4c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x4000087f10 sp=0x4000087e00 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef280)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x4000087fb0 sp=0x4000087f10 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x4000087fd0 sp=0x4000087fb0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x4000087fd0 sp=0x4000087fd0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 10 [select]:
+runtime.gopark(0x4000080778?, 0x3?, 0x0?, 0x0?, 0x4000080752?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000080600 sp=0x40000805e0 pc=0x48210
+runtime.selectgo(0x4000080778, 0x400008074c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x4000080710 sp=0x4000080600 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef300)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x40000807b0 sp=0x4000080710 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x40000807d0 sp=0x40000807b0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x40000807d0 sp=0x40000807d0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 11 [select]:
+runtime.gopark(0x4000080f78?, 0x3?, 0x0?, 0x0?, 0x4000080f52?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000280e00 sp=0x4000280de0 pc=0x48210
+runtime.selectgo(0x4000280f78, 0x4000080f4c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x4000280f10 sp=0x4000280e00 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef380)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x4000280fb0 sp=0x4000280f10 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x4000280fd0 sp=0x4000280fb0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x4000280fd0 sp=0x4000280fd0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 12 [select]:
+runtime.gopark(0x4000081778?, 0x3?, 0x0?, 0x0?, 0x4000081752?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000081600 sp=0x40000815e0 pc=0x48210
+runtime.selectgo(0x4000081778, 0x400008174c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x4000081710 sp=0x4000081600 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef400)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x40000817b0 sp=0x4000081710 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x40000817d0 sp=0x40000817b0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x40000817d0 sp=0x40000817d0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 13 [select]:
+runtime.gopark(0x4000081f78?, 0x3?, 0x0?, 0x0?, 0x4000081f52?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000081e00 sp=0x4000081de0 pc=0x48210
+runtime.selectgo(0x4000081f78, 0x4000081f4c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x4000081f10 sp=0x4000081e00 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef480)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x4000081fb0 sp=0x4000081f10 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x4000081fd0 sp=0x4000081fb0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x4000081fd0 sp=0x4000081fd0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 14 [select]:
+runtime.gopark(0x4000082778?, 0x3?, 0x0?, 0x0?, 0x4000082752?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000082600 sp=0x40000825e0 pc=0x48210
+runtime.selectgo(0x4000082778, 0x400008274c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x4000082710 sp=0x4000082600 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef500)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x40000827b0 sp=0x4000082710 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x40000827d0 sp=0x40000827b0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x40000827d0 sp=0x40000827d0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 15 [select]:
+runtime.gopark(0x4000082f78?, 0x3?, 0x0?, 0x0?, 0x4000082f52?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000082e00 sp=0x4000082de0 pc=0x48210
+runtime.selectgo(0x4000082f78, 0x4000082f4c, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x4000082f10 sp=0x4000082e00 pc=0x588ac
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logWorker).work(0x40000ef600)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:98 +0x128 fp=0x4000082fb0 sp=0x4000082f10 pc=0x38d348
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func1()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x28 fp=0x4000082fd0 sp=0x4000082fb0 pc=0x38ddf8
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x4000082fd0 sp=0x4000082fd0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:225 +0x38
+
+goroutine 16 [chan receive]:
+runtime.gopark(0x400000000f?, 0x4000314e88?, 0xd8?, 0x36?, 0x1187c8?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x4000314ea0 sp=0x4000314e80 pc=0x48210
+runtime.chanrecv(0x4000060420, 0x0, 0x1)
+	/usr/local/go/src/runtime/chan.go:583 +0x468 fp=0x4000314f30 sp=0x4000314ea0 pc=0x162e8
+runtime.chanrecv1(0x4000060420?, 0x4000314f88?)
+	/usr/local/go/src/runtime/chan.go:442 +0x14 fp=0x4000314f60 sp=0x4000314f30 pc=0x15e44
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).waitForShutdownSignal(0x40001b66c0)
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:238 +0x74 fp=0x4000314fb0 sp=0x4000314f60 pc=0x38dea4
+gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start.func2()
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:229 +0x28 fp=0x4000314fd0 sp=0x4000314fb0 pc=0x38dd98
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_arm64.s:1172 +0x4 fp=0x4000314fd0 sp=0x4000314fd0 pc=0x7a304
+created by gitlab.myteksi.net/gophers/go/commons/util/log/yall/slog.(*logBuffer).start
+	/root/go/pkg/mod/gitlab.myteksi.net/gophers/go/commons/util/log/yall@v1.0.20/slog/async_buffer.go:229 +0xf0
+
+goroutine 17 [select, locked to thread]:
+runtime.gopark(0x400040e7a0?, 0x2?, 0x78?, 0xe6?, 0x400040e79c?)
+	/usr/local/go/src/runtime/proc.go:381 +0xe0 fp=0x400040e630 sp=0x400040e610 pc=0x48210
+runtime.selectgo(0x400040e7a0, 0x400040e798, 0x0?, 0x0, 0x0?, 0x1)
+	/usr/local/go/src/runtime/select.go:327 +0x68c fp=0x400040e740 sp=0x4

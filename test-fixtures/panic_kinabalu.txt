@@ -1,0 +1,24 @@
+temporal%!(EXTRA string=Workflow panic, []interface {}=[Namespace kinabalu TaskQueue kinabalu-workflow WorkerID 1@kinabalu-be-primary-697889495d-fz7hw@ WorkflowType TMT WorkflowID TMTWorkflow:krVAqtowkpzWgnZ9HNR8bF RunID 347b0fbf-461a-441c-8515-d857c383ce08 Attempt 179 Error unknown command CommandType: ChildWorkflow, ID: 347b0fbf-461a-441c-8515-d857c383ce08_29, possible causes are nondeterministic workflow definition code or incompatible change in the workflow definition StackTrace process event for kinabalu-workflow [panic]:
+go.temporal.io/sdk/internal.panicIllegalState(...)
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_command_state_machine.go:440
+go.temporal.io/sdk/internal.(*commandsHelper).getCommand(0x400d237540?, {0x1, {0x400cacb230, 0x27}})
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_command_state_machine.go:923 +0x118
+go.temporal.io/sdk/internal.(*commandsHelper).handleStartChildWorkflowExecutionInitiated(0x40?, {0x400cacb230?, 0x40?})
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_command_state_machine.go:1174 +0x2c
+go.temporal.io/sdk/internal.(*workflowExecutionEventHandlerImpl).ProcessEvent(0x400c5e4018, 0x4003675000, 0x3?, 0x0)
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_event_handlers.go:1136 +0x518
+go.temporal.io/sdk/internal.(*workflowExecutionContextImpl).ProcessWorkflowTask(0x4003e63200, 0x4004bf45d0)
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_task_handlers.go:998 +0xff0
+go.temporal.io/sdk/internal.(*workflowTaskHandlerImpl).ProcessWorkflowTask(0x400359e0d0, 0x4004bf45d0, 0x4003e63200, 0x4004bf4f00)
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_task_handlers.go:811 +0x2bc
+go.temporal.io/sdk/internal.(*workflowTaskPoller).processWorkflowTask(0x40035e8c60, 0x4004bf45d0)
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_task_pollers.go:354 +0x340
+go.temporal.io/sdk/internal.(*workflowTaskPoller).ProcessTask(0x40035e8c60, {0x2148da0, 0x4004bf45d0})
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_task_pollers.go:318 +0x70
+go.temporal.io/sdk/internal.(*baseWorker).processTask(0x40008a3040, {0x21498a0, 0x4003ea0120})
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_worker_base.go:469 +0x154
+go.temporal.io/sdk/internal.(*baseWorker).processTaskAsync.func1()
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_worker_base.go:339 +0x48
+created by go.temporal.io/sdk/internal.(*baseWorker).processTaskAsync in goroutine 228
+	/builds/techops-automation/kinabalu-be/.go/pkg/mod/go.temporal.io/sdk@v1.24.0/internal/internal_worker_base.go:335 +0xa4])
+    

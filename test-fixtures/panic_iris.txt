@@ -1,0 +1,32 @@
+scheduler : === [STACK_TRACE] ===
+/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/algo/scheduler/task.go:89
+	gitlab.myteksi.net/gophers/go/commons/algo/scheduler.(*Task).Run.func1
+
+golang/go/src/runtime/panic.go:770
+	runtime.gopanic
+
+golang/go/src/runtime/panic.go:261
+	runtime.sigpanic
+
+golang/go/src/runtime/signal_unix.go:881
+	runtime.sigpanic
+
+/go/src/gitlab.myteksi.net/gophers/go/dispatch-platform/iris/internal/managers/shardingfileshandler/impl.go:119
+	gitlab.myteksi.net/gophers/go/dispatch-platform/iris/internal/managers/shardingfileshandler.(*impl).SetShardingTreeToRedis
+
+/go/src/gitlab.myteksi.net/gophers/go/dispatch-platform/iris/server/handlers/cron/schedule.go:175
+	gitlab.myteksi.net/gophers/go/dispatch-platform/iris/server/handlers/cron.(*IrisScheduler).importShardingFilesTask.func1
+
+/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/resilience/retry/retry.go:85
+	gitlab.myteksi.net/gophers/go/commons/util/resilience/retry.startOperation
+
+/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/resilience/retry/retry.go:52
+	gitlab.myteksi.net/gophers/go/commons/util/resilience/retry.Do
+
+/go/src/gitlab.myteksi.net/gophers/go/dispatch-platform/iris/server/handlers/cron/schedule.go:173
+	gitlab.myteksi.net/gophers/go/dispatch-platform/iris/server/handlers/cron.(*IrisScheduler).importShardingFilesTask
+
+golang/go/src/reflect/value.go:596
+	reflect.Value.call
+
+---------------------

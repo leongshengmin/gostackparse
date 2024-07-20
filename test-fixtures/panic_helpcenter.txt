@@ -1,0 +1,32 @@
+uptimeMiddleware : === [STACK_TRACE] ===
+/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/log/structlog/logger.go:179
+	gitlab.myteksi.net/gophers/go/commons/util/log/structlog.logger.Fatal
+
+/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/corex/tools/uptime/middleware.go:68
+	gitlab.myteksi.net/gophers/go/corex/tools/uptime.(*middleware).measure.func1.1
+
+golang/go/src/runtime/panic.go:770
+	runtime.gopanic
+
+/go/src/gitlab.myteksi.net/gophers/go/vendor/gitlab.myteksi.net/gophers/go/commons/util/grab-kit/endpoint/paniclogmiddleware/middleware.go:158
+	gitlab.myteksi.net/gophers/go/commons/util/grab-kit/gkserver.(*serverImpl).Endpoint.(*Middleware).Wrap.func3.1
+
+golang/go/src/runtime/panic.go:770
+	runtime.gopanic
+
+golang/go/src/runtime/panic.go:261
+	runtime.sigpanic
+
+golang/go/src/runtime/signal_unix.go:881
+	runtime.sigpanic
+
+/go/src/gitlab.myteksi.net/gophers/go/cse/helpcenter/internal/services/fare_details.go:98
+	gitlab.myteksi.net/gophers/go/cse/helpcenter/internal/services.fareDetailsServiceImpl.GetFareDetailsForPax
+
+/go/src/gitlab.myteksi.net/gophers/go/cse/helpcenter/internal/controller/fare_details.go:64
+	gitlab.myteksi.net/gophers/go/cse/helpcenter/internal/controller.fareDetailsControllerImpl.GetFareDetailsForPax
+
+/go/src/gitlab.myteksi.net/gophers/go/cse/helpcenter/server/handlers/handlers.go:95
+	gitlab.myteksi.net/gophers/go/cse/helpcenter/server/handlers.(*HelpcenterServiceDNB).GetFareDetailsForPax
+
+---------------------

@@ -11,6 +11,7 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -21,6 +22,25 @@ import (
 )
 
 var update = flag.Bool("update", false, "update golden files")
+
+func TestParse_PanicStackTraces(t *testing.T) {
+	inputs, err := filepath.Glob(filepath.Join("test-fixtures", "panic_*.txt"))
+	require.NoError(t, err)
+	for _, input := range inputs {
+		inputData, err := ioutil.ReadFile(input)
+		require.NoError(t, err)
+
+		goroutines, errs := Parse(bytes.NewReader(inputData))
+		// Ouptut the results
+		var buf bytes.Buffer
+		json.NewEncoder(&buf).Encode(goroutines)
+		if errs != nil {
+			log.Printf("error parsing stacktrace from %s: %v", input, errs)
+		}
+		log.Printf("stacktrace from %s: %v", input, buf.String())
+		
+	}
+}
 
 // TestParse_GoldenFiles verifies the output of the parser for a set of input
 // files in the test-fixtures. If you want to test a new behavior or bug fix,

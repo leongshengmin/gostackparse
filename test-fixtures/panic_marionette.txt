@@ -1,0 +1,32 @@
+marionette : === [STACK_TRACE] ===
+/go/src/gitlab.myteksi.net/gophers/go/tools/marionette/api/middleware/runtime_error_handler.go:38
+	gitlab.myteksi.net/gophers/go/tools/marionette/api/middleware.RuntimeErrorHandler.func1.1
+
+golang/go/src/runtime/panic.go:770
+	runtime.gopanic
+
+golang/go/src/runtime/panic.go:261
+	runtime.panicmem
+
+golang/go/src/runtime/panic.go:260
+	runtime.panicmem
+
+/go/src/gitlab.myteksi.net/gophers/go/tools/marionette/internal/executor/external/grab_api_client.go:237
+	gitlab.myteksi.net/gophers/go/tools/marionette/internal/executor/external.(*grabAPIClient).CreateBooking
+
+/go/src/gitlab.myteksi.net/gophers/go/tools/marionette/internal/executor/physical_executor.go:898
+	gitlab.myteksi.net/gophers/go/tools/marionette/internal/executor.(*PhysicalExecutor).PassengerMultiStopBookingCreate
+
+/go/src/gitlab.myteksi.net/gophers/go/tools/marionette/internal/controller/actions/passenger_multistop_booking_create.go:53
+	gitlab.myteksi.net/gophers/go/tools/marionette/internal/controller/actions.PassengerMultiStopBookingCreate.Execute
+
+/go/src/gitlab.myteksi.net/gophers/go/tools/marionette/internal/controller/filtered_cohort.go:727
+	gitlab.myteksi.net/gophers/go/tools/marionette/internal/controller.(*filteredCohort).Execute
+
+/go/src/gitlab.myteksi.net/gophers/go/tools/marionette/internal/controller/behaviours/passenger_behaviour_default.go:136
+	gitlab.myteksi.net/gophers/go/tools/marionette/internal/controller/behaviours.(*passengerBehaviourDefault).CreateMultiStopBooking
+
+/go/src/gitlab.myteksi.net/gophers/go/tools/marionette/internal/api/passenger_multistop_booking_create.go:192
+	gitlab.myteksi.net/gophers/go/tools/marionette/internal/api.passengerMultiStopBookingCreateHandler
+
+---------------------
